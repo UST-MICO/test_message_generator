@@ -15,8 +15,9 @@ if __name__ == '__main__':
     # prepare the controller
     generator = MessageGenerator(MESSAGE_SOURCE)
     producer = KafkaProducer(bootstrap_servers=["{}:{}".format(KAFKA_BROKER_HOST, KAFKA_BROKER_PORT)])
-    controller = MessagingController(generator, producer, KAFKA_TARGET_TOPIC, MESSAGE_SEND_INTERVAL,
-                                     KAFKA_TARGET_TOPIC_NUM_PARTITIONS, KAFKA_TARGET_TOPIC_REPLICATION_FACTOR)
+    controller = MessagingController(generator, producer, KAFKA_TARGET_TOPIC,
+                                     MESSAGE_SEND_INTERVAL, KAFKA_TARGET_TOPIC_NUM_PARTITIONS,
+                                     KAFKA_TARGET_TOPIC_REPLICATION_FACTOR)
 
     # start execution
     controller.start_producing()

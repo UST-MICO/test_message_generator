@@ -23,7 +23,7 @@ class MessagingController:
         self.replication_factor = replication_factor
         self.send_interval = send_interval
         self.stopped = Event()
-        self._prepare_topic()
+        #self._prepare_topic()
         info('MessagingController was created')
 
     def _send_message(self):

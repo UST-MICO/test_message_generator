@@ -7,10 +7,18 @@ from kafka.admin import NewTopic
 bootstrap_servers = ['localhost:9092']
 
 
-# The test can be executed using pytest:q
 class TestKafka:
+    """
+    Use pytest for these tests.
+    """
 
     def test_delete_topics(self):
+        """
+        Caution! This test is supposed to run in a test environment. Do not use it in a production environment,
+        as it is supposed to delete all topics! The test environment can be started with
+        tests/resources docker-compose.yml
+        :return: -
+        """
         # get all topics...
         consumer = KafkaConsumer(bootstrap_servers=bootstrap_servers)
         topics = consumer.topics()
@@ -24,6 +32,9 @@ class TestKafka:
         assert(len(topics) == 0)
 
     def test_create_topics(self):
+        """
+        Test if topics are correctly created.
+        """
         # create topics ...
         topic_names = ['test_1', 'test2', 'test_3']
 
@@ -40,6 +51,10 @@ class TestKafka:
             assert(topic in topics)
 
     def test_produce_and_consume(self):
+        """
+        It first creates 10 messages. The it consumes them. It is successful, if all messages are consumed.
+        :return: -
+        """
         topic = 'test_4'
         topic_partition = TopicPartition(topic='test_4', partition=0)
         msg = b'this is a message'

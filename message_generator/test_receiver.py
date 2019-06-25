@@ -3,6 +3,11 @@ from kafka import KafkaConsumer
 from config import *
 from logging import info
 
+
+"""
+Simple application that continuously receives the messages for KAFKA_TARGET_TOPIC and 
+logs them to a file, as well as to stdout. 
+"""
 if __name__ == '__main__':
     prepare_logging(LOG_FILE_PATH, LOG_FORMAT, LOG_LEVEL)
     info('Setting: \n ' + get_env_variable_str(locals()))

@@ -1,7 +1,10 @@
 from os import environ
 import uuid
 
-
+"""
+Reads all the relevant environment variables of the OS and stores them in a variable with the same name.
+Every script with `from config import *` can access these variables.  
+"""
 LOG_FILE_PATH = environ.get('LOG_FILE_PATH', 'test_message_generator.log')
 LOG_FORMAT = environ.get('LOG_FORMAT', '%(asctime)-15s %(message)s')
 LOG_LEVEL = environ.get('LOG_LEVEL', 'INFO')

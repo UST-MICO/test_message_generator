@@ -8,11 +8,10 @@ from config import *
 
 if __name__ == '__main__':
     # Read in the environment variables
-
     prepare_logging(LOG_FILE_PATH, LOG_FORMAT, LOG_LEVEL)
     info('Start logging with the following setting: \n ' + get_env_variable_str(locals()))
 
-    # prepare the controller
+    # prepare the message generator and controller
     generator = MessageGenerator(MESSAGE_SOURCE)
     producer = KafkaProducer(bootstrap_servers=["{}:{}".format(KAFKA_BROKER_HOST, KAFKA_BROKER_PORT)])
     controller = MessagingController(generator, producer, KAFKA_TARGET_TOPIC,

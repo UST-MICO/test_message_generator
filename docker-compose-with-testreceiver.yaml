@@ -28,25 +28,23 @@ services:
     networks:
       - 'test-network'
     environment:
-      KAFKA_BROKER_HOST: "test-kafka"
-      KAFKA_BROKER_PORT: 9092
-      KAFKA_TARGET_TOPIC: "test-message-generator"
+      KAFKA_BOOTSTRAP_SERVERS: 'test-kafka:9092'
+      KAFKA_TARGET_TOPIC: 'test-message-generator'
       MESSAGE_SEND_INTERVAL: 5
-      LOG_LEVEL: "INFO"
-      LOG_FORMAT: "%(asctime)-15s %(message)s"
-      LOG_FILE_PATH: "/var/log/test_message_generator.log"
+      LOG_LEVEL: 'INFO'
+      LOG_FORMAT: '%(asctime)-15s %(message)s'
+      LOG_FILE_PATH: '/var/log/test_message_generator.log'
     entrypoint: 'python3 message_generator/__main__.py'
     restart: always
   test-reciever:
     build: .
-    container_name: 'test-receiver'
+    container_name: 'test-receivertest-kafka'
     depends_on:
       - 'test-kafka'
     networks:
       - 'test-network'
     environment:
-      KAFKA_BROKER_HOST: 'test-kafka'
-      KAFKA_BROKER_PORT: 9092
+      KAFKA_BOOTSTRAP_SERVERS: 'test-kafka:9092'
       KAFKA_TARGET_TOPIC: 'test-message-generator'
       MESSAGE_SEND_INTERVAL: 5
       LOG_LEVEL: 'INFO'

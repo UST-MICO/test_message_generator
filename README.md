@@ -42,6 +42,6 @@ This will start up a testing environment (kafka and zookeeper) and run all tests
 | KAFKA_TARGET_TOPIC                    | The topic, to which each message is published                                                                                      | test-message-generator                  |
 | KAFKA_TARGET_TOPIC_REPLICATION_FACTOR | The replication factor of the target topic. Only applied, when the message generator has to create the topic manually              | 1                                       |
 | KAFKA_TARGET_TOPIC_NUM_PARTITIONS     | The number of partitions of the target topic. Only applied, when the message generator has to create the topic manually            | 1                                       |
-| KAFKA_BROKER_HOST                     | The domain of the kafka broker                                                                                                     | localhost                               |
-| KAFKA_BROKER_PORT                     | The port of the kafka broker                                                                                                       | 9092                                    |
+| KAFKA_BOOTSTRAP_SERVERS               | The domain and port of the kafka broker                                                                                            | localhost:9092                          |
+
 

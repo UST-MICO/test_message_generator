@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     # prepare the message generator and controller
     generator = MessageGenerator(MESSAGE_SOURCE)
-    producer = KafkaProducer(bootstrap_servers=["{}:{}".format(KAFKA_BROKER_HOST, KAFKA_BROKER_PORT)])
+    producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS.split(','))
     controller = MessagingController(generator, producer, KAFKA_TARGET_TOPIC,
                                      MESSAGE_SEND_INTERVAL, KAFKA_TARGET_TOPIC_NUM_PARTITIONS,
                                      KAFKA_TARGET_TOPIC_REPLICATION_FACTOR)

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
 from logging import info
 
@@ -30,8 +30,8 @@ class MessageGenerator:
         """
         msg = {
                 'id': uuid.uuid4().hex,
-                'time': datetime.now().isoformat(),
+                'time': datetime.now(timezone.utc).isoformat(),
                 'data': {
-                    'timestamp': datetime.timestamp(datetime.now())
+                    'timestamp': datetime.now().timestamp()
                 }}
         return {**msg, **self.default_fields}

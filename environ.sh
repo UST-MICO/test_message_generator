@@ -12,5 +12,5 @@ export PYTHONPATH=$(pwd)/message_generator:${PYTHONPATH}
 # export LOG_LEVEL='DEBUG'
 # export MESSAGE_SOURCE='message generator'
 # export MESSAGE_SEND_INTERVAL=5
-# export KAFKA_TARGET_TOPIC='test-message-generator'
+# export KAFKA_TOPIC_OUTPUT='test-message-generator'
 # export KAFKA_BOOTSTRAP_SERVERS='localhost:9092'

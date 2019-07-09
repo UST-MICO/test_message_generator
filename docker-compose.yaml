@@ -2,7 +2,7 @@ version: '2'
 services:
   test-zookeeper:
     image: wurstmeister/zookeeper
-    container_name: 'zookeeper'
+    container_name: 'test-zookeeper'
     ports:
       - '2181:2181'
     networks:
@@ -15,7 +15,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 'test-kafka'
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: 'test-zookeeper:2181'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
     networks:

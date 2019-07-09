@@ -2,7 +2,7 @@ version: '3.7'
 services:
   test-zookeeper:
     image: wurstmeister/zookeeper
-    container_name: 'zookeeper'
+    container_name: 'test-zookeeper'
     ports:
       - '2181:2181'
     networks:
@@ -15,7 +15,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 'test-kafka'
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: 'test-zookeeper:2181'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
     networks:
@@ -36,9 +36,9 @@ services:
       LOG_FILE_PATH: '/var/log/test_message_generator.log'
     entrypoint: 'python3 message_generator/__main__.py'
     restart: always
-  test-reciever:
+  test-receiver:
     build: .
-    container_name: 'test-receivertest-kafka'
+    container_name: 'test-receiver'
     depends_on:
       - 'test-kafka'
     networks:

@@ -29,5 +29,5 @@ class TestMessageGenerator:
         assert  delta.total_seconds() < 10
 
         # Ensure that the data field contains the right value types
-        assert 'timestamp' in msg['data']
-        assert 'rand_int' in msg['data']
+        for k in ['timestamp', 'rand_int', 'text']:
+            assert k in msg['data'].keys()

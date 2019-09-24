@@ -1,5 +1,5 @@
 from message_generator import MessageGenerator
-from datetime import datetime
+from datetime import datetime, timezone
 import dateutil.parser
 
 
@@ -20,7 +20,14 @@ class TestMessageGenerator:
         # Ensure that the source was set appropriately
         assert msg['source'] == source
 
-        # Ensure that the timestamp is up to date (not older than 10 seconds)
+        # Ensures that the timestamp is UTC
         msg_date = dateutil.parser.parse(msg['time'])
-        delta = (datetime.now() - msg_date)
+        assert msg_date.tzname() == 'UTC'
+
+        # Ensure that the timestamp is up to date (not older than 10 seconds)
+        delta = (datetime.now(timezone.utc) - msg_date)
         assert  delta.total_seconds() < 10
+
+        # Ensure that the data field contains the right value types
+        assert 'timestamp' in msg['data']
+        assert 'rand_int' in msg['data']

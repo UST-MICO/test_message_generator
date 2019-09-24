@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import uuid
 from logging import info
+from random import randint as randint
 
 
 class MessageGenerator:
@@ -32,6 +33,7 @@ class MessageGenerator:
                 'id': uuid.uuid4().hex,
                 'time': datetime.now(timezone.utc).isoformat(),
                 'data': {
-                    'timestamp': datetime.now().timestamp()
+                    'timestamp': datetime.now().timestamp(),
+                    'rand_int': randint(1, 100)
                 }}
         return {**msg, **self.default_fields}

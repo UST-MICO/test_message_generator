@@ -26,7 +26,7 @@ class TestMessageGenerator:
 
         # Ensure that the timestamp is up to date (not older than 10 seconds)
         delta = (datetime.now(timezone.utc) - msg_date)
-        assert  delta.total_seconds() < 10
+        assert delta.total_seconds() < 10
 
         # Ensure that the data field contains the right value types
         for k in ['timestamp', 'rand_int', 'text']:
